@@ -16,6 +16,7 @@ object_script.*.Debug
 *_plugin_import.cpp
 /.qmake.cache
 /.qmake.stash
+/build
 *.pro.user
 *.pro.user.*
 *.qbs.user
@@ -31,6 +32,10 @@ Makefile*
 *build-*
 *.qm
 *.prl
+
+
+# Application API key
+config.txt
 
 # Qt unit tests
 target_wrapper.*
