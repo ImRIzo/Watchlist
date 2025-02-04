@@ -1,6 +1,8 @@
 #include "watchlist.h"
+#include "serverdata.h"
 #include "./ui_watchlist.h"
 #include <qfile.h>
+#include <QLineEdit>
 #include <QDebug>
 
 WatchList::WatchList(QWidget *parent)
@@ -28,10 +30,25 @@ void WatchList::GetAPIkey()
     }
 }
 
-
-
-
 WatchList::~WatchList()
 {
     delete ui;
+}
+
+// once the search button is clicked this function .............
+void WatchList::on_searchBtn_clicked()
+{
+    QString title = ui->searchBox->text();
+    serverdata *sd = new serverdata(this);
+    // Connect the dataReceived signal to the onDataReceived slot
+    connect(sd, &serverdata::dataReceived, this, &WatchList::onDataReceived);
+    sd->GetData(apiKey, title);
+}
+// this slot triggers when we get data
+void WatchList::onDataReceived(QString jsonData) {
+    if (jsonData.isNull()) {
+        qDebug() << "Failed to fetch data.";
+    } else {
+        //qDebug() << "Received JSON data:" << jsonData;
+    }
 }

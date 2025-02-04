@@ -34,7 +34,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="searchBox">
             <property name="baseSize">
              <size>
               <width>50</width>
@@ -50,7 +50,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="searchBtn">
             <property name="text">
              <string>S</string>
             </property>

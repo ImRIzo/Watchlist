@@ -20,6 +20,10 @@ public:
     void GetAPIkey();
     ~WatchList();
 
+private slots:
+    void on_searchBtn_clicked();
+    void onDataReceived(QString jsonData);
+
 private:
     Ui::WatchList *ui;
 };
