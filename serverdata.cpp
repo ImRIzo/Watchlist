@@ -32,6 +32,5 @@ void serverdata::onReplyFinished(QNetworkReply *reply) {
         qDebug() << "Error:" << reply->errorString();
         emit dataReceived(nullptr); // Emit nullptr in case of error
     }
-
     reply->deleteLater();
 }
