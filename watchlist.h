@@ -2,6 +2,9 @@
 #define WATCHLIST_H
 
 #include <QMainWindow>
+#include <QListView>
+#include "MovieModel.h"
+#include "MovieDelegate.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -26,5 +29,9 @@ private slots:
 
 private:
     Ui::WatchList *ui;
+    QListView *listView;
+    MovieModel *model;
+
+    void fuck(QString jsonData);
 };
 #endif // WATCHLIST_H

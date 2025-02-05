@@ -7,7 +7,6 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 #include <QJsonDocument>
-#include <QJsonObject>
 
 class serverdata : public QObject
 {

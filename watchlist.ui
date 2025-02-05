@@ -15,6 +15,18 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
     <item>
      <widget class="QWidget" name="upper_widget" native="true">
       <property name="sizePolicy">
@@ -33,13 +45,36 @@
           </sizepolicy>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QLineEdit" name="searchBox">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
             <property name="baseSize">
              <size>
               <width>50</width>
               <height>50</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
             </property>
             <property name="contextMenuPolicy">
              <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
@@ -51,8 +86,22 @@
           </item>
           <item>
            <widget class="QPushButton" name="searchBtn">
+            <property name="minimumSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
             <property name="text">
-             <string>S</string>
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset theme="QIcon::ThemeIcon::SystemSearch"/>
             </property>
            </widget>
           </item>
@@ -68,8 +117,31 @@
           </sizepolicy>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0">
-          <item>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>0</number>
+          </property>
+          <item alignment="Qt::AlignmentFlag::AlignHCenter">
            <widget class="QLabel" name="label">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
             <property name="text">
              <string>My Watchlist</string>
             </property>
@@ -87,10 +159,10 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <widget class="QListView" name="listView_2"/>
+          <widget class="QListView" name="listview_search"/>
          </item>
          <item>
-          <widget class="QListView" name="listView"/>
+          <widget class="QListView" name="listview_saved"/>
          </item>
         </layout>
        </item>
@@ -108,8 +180,47 @@
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionLoad_Local_Data"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionHow_To_Use"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout_This_App"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLoad_Local_Data">
+   <property name="text">
+    <string>Load Local Data</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionHow_To_Use">
+   <property name="text">
+    <string>How To Use</string>
+   </property>
+  </action>
+  <action name="actionAbout_This_App">
+   <property name="text">
+    <string>About This App</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -24,8 +24,8 @@ void serverdata::onReplyFinished(QNetworkReply *reply) {
         // Read the response data
         QByteArray responseData = reply->readAll();
         QString jsonData(responseData);
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData.toUtf8());
-        qDebug()<<jsonDoc;
+        //QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonData.toUtf8());
+        //qDebug()<<jsonDoc;
         // Emit the dataReceived signal with the JSON data
         emit dataReceived(jsonData);
     } else {
