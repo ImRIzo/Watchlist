@@ -50,34 +50,19 @@ void WatchList::onDataReceived(QString jsonData) {
         qDebug() << "Failed to fetch data.";
     } else {
         //qDebug() << "Received JSON data:" << jsonData;
+
         fuck(jsonData);
     }
 }
 void WatchList::fuck(QString jsonData){
 
     listView = ui->listview_search;
-    model = new MovieModel(this, jsonData);
+    model = new MovieModel(this);
     MovieDelegate *delegate = new MovieDelegate(this);
 
     listView->setModel(model);
     listView->setItemDelegate(delegate);
     listView->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    Movie movie1{"Inception", "2010", "Christopher Nolan"};
-    Movie movie2{"XXX", "2010", "Pamela"};
-    Movie movie3{"XXX", "2010", "Pamela"};
-    Movie movie4{"XXX", "2010", "Pamela"};
-    Movie movie5{"XXX", "2010", "Pamela"};
-    Movie movie6{"XXX", "2010", "Pamela"};
-    Movie movie7{"XXX", "2010", "Pamela"};
-
-    model->addMovie(movie1);
-    model->addMovie(movie2);
-    model->addMovie(movie3);
-    model->addMovie(movie4);
-    model->addMovie(movie5);
-    model->addMovie(movie6);
-    model->addMovie(movie7);
-
-
+    model->ShowSearchResult(jsonData);
 }

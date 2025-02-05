@@ -4,6 +4,11 @@
 #include <QObject>
 #include <QAbstractListModel>
 #include <QPixmap>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
+#include "serverdata.h"
 
 struct Movie {
     QString Title;
@@ -26,15 +31,17 @@ public:
         PosterRole
     };
 
-    explicit MovieModel(QObject *parent = nullptr, QString jsonServerData = nullptr);
+    explicit MovieModel(QObject *parent = nullptr);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-
-    void addMovie(const Movie &movie);
-
+    // this function shows the result
+    void ShowSearchResult(QString _jsonServerData);
 private:
     QList<Movie> movies;
+    QString jsonServerData;
+    void addMovie(const Movie &movie);
+    serverdata *serverData;
 };
 
 #endif // MOVIEMODEL_H

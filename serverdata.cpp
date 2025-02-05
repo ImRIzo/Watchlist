@@ -34,3 +34,24 @@ void serverdata::onReplyFinished(QNetworkReply *reply) {
     }
     reply->deleteLater();
 }
+
+// image downloading function; it returns the QPixmap
+QPixmap serverdata::downloadImage(QString url) {
+    QNetworkAccessManager manager;
+    QNetworkRequest request(url);
+    QNetworkReply *reply = manager.get(request);
+
+    // Create an event loop to wait until the request is finished
+    QEventLoop loop;
+    QObject::connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    loop.exec(); // Blocks until the image is downloaded
+
+    QPixmap pixmap;
+    if (reply->error() == QNetworkReply::NoError) {
+        QByteArray imageData = reply->readAll();
+        pixmap.loadFromData(imageData); // Load image into QPixmap
+    }
+
+    reply->deleteLater();
+    return pixmap;
+}

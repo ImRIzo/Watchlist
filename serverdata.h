@@ -7,13 +7,18 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 #include <QJsonDocument>
+#include <QPixmap>
+#include <QEventLoop>
 
 class serverdata : public QObject
 {
     Q_OBJECT
 public:
     explicit serverdata(QObject *parent = nullptr);
+    // json data downloading function
     void GetData(QString apikey,QString title);
+    // image downloading function
+    QPixmap downloadImage(QString url);
 
 private:
     QNetworkAccessManager *manager;
