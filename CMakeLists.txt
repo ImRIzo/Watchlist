@@ -27,6 +27,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         serverdata.h serverdata.cpp
         moviemodel.h moviemodel.cpp
         moviedelegate.h moviedelegate.cpp
+        resources.qrc
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Watchlist APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

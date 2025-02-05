@@ -20,11 +20,28 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     QRect posterRect(rect.left() + 10, rect.top() + 5, 50, 75);
     painter->drawPixmap(posterRect, poster.scaled(posterRect.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
-    int textX = posterRect.right() + 10;
-    QRect titleRect(textX, rect.top() + 10, rect.width() - textX - 10, 20);
+    // these lines defines text starting positions
+    int textX = posterRect.right() + 60;
+    int fieldX = posterRect.right() + 10;
+
+    // here we alligning rects
+    QRect titleRect(fieldX, rect.top() + 10, rect.width() - textX - 10, 20);
+    QRect yearfieldRect(fieldX, rect.top() + 35, rect.width() - textX - 10, 20);
     QRect yearRect(textX, rect.top() + 35, rect.width() - textX - 10, 15);
+    QRect imdbidfieldRect(fieldX, rect.top() + 55, rect.width() - textX - 10, 20);
     QRect imdbID(textX, rect.top() + 55, rect.width() - textX - 10, 15);
 
+
+    // here we are designing filed text e.g. Year: imdbID .....
+    QFont fieldFont = painter->font();
+    //fieldFont.setBold(false);
+    fieldFont.setPointSize(10);
+    painter->setFont(fieldFont);
+    painter->setPen(QColor(1,1,1));
+    painter->drawText(yearfieldRect, Qt::AlignLeft, "Year: ");
+    painter->drawText(imdbidfieldRect, Qt::AlignLeft, "imdbID: ");
+
+    // movie title design
     QFont titleFont = painter->font();
     titleFont.setBold(true);
     titleFont.setPointSize(12);
@@ -32,10 +49,11 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     painter->setPen(QColor(1,1,1));
     painter->drawText(titleRect, Qt::AlignLeft, index.data(MovieModel::TitleRole).toString());
 
+    // details texts deign like : year = 2015, imdbid = t4556445
     QFont detailsFont = painter->font();
     detailsFont.setPointSize(10);
     painter->setFont(detailsFont);
-    painter->setPen(Qt::gray);
+    painter->setPen(Qt::white);
     painter->drawText(yearRect, Qt::AlignLeft, index.data(MovieModel::YearRole).toString());
     painter->drawText(imdbID, Qt::AlignLeft, index.data(MovieModel::imdbIDRole).toString());
 

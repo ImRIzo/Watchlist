@@ -1,5 +1,5 @@
 #include "moviemodel.h"
-
+#include <QDebug>
 MovieModel::MovieModel(QObject *parent): QAbstractListModel(parent){
     serverData = new serverdata(this);
 }
@@ -54,7 +54,15 @@ void MovieModel::ShowSearchResult(QString _jsonServerData){
         movie.Year = movieObj["Year"].toString();
         movie.imdbID = movieObj["imdbID"].toString();
         movie.Type = movieObj["Type"].toString();
-        movie.Poster = serverData->downloadImage(movieObj["Poster"].toString());
+        // postar downloading.. if no postar then return a default postar
+        QPixmap poster = serverData->downloadImage(movieObj["Poster"].toString());
+        if (poster.isNull()) {
+            poster.load(":/images/resources/images/defaultposter.png");
+            movie.Poster = poster;
+        }else{
+            movie.Poster = poster;
+        }
+
 
         addMovie(movie);
     }

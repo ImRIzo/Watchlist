@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>resources/images/defaultposter.png</file>
+        <file>resources/images/appicon.png</file>
+    </qresource>
+</RCC>
