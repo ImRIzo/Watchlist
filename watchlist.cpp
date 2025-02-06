@@ -73,5 +73,7 @@ void WatchList::onMovieItemClicked(const QModelIndex &index)
 {
     QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
     qDebug() << "Clicked movie:" << imdbID;
+    ui->stackedWidget->setCurrentWidget(ui->details_page);
+
 }
 

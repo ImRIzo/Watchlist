@@ -13,10 +13,27 @@
     <height>576</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>WatchList</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#centralwidget{
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 rgba(0, 0, 0, 150), 
+                                stop:1 rgba(0, 0, 0, 0));
+}
+</string>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="leftMargin">
      <number>0</number>
@@ -158,12 +175,18 @@
     </item>
     <item>
      <widget class="QWidget" name="lower_widget" native="true">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
+        <layout class="QHBoxLayout" name="horizontalLayout" stretch="50,50">
          <item>
           <widget class="QStackedWidget" name="stackedWidget">
-           <widget class="QWidget" name="search_listpage">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <widget class="QWidget" name="searchlist_page">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -184,7 +207,11 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QListView" name="listview_search"/>
+              <widget class="QListView" name="listview_search">
+               <property name="cursor" stdset="0">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -233,204 +260,609 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QWidget" name="details_widget" native="true">
-               <property name="styleSheet">
-                <string notr="true"/>
+              <widget class="QFrame" name="fullframe">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
                </property>
-               <widget class="QLabel" name="details_poster">
-                <property name="geometry">
-                 <rect>
-                  <x>10</x>
-                  <y>10</y>
-                  <width>150</width>
-                  <height>222</height>
-                 </rect>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_2" stretch="55,45">
+                <property name="spacing">
+                 <number>0</number>
                 </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>222</height>
-                 </size>
+                <property name="leftMargin">
+                 <number>0</number>
                 </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
+                <property name="topMargin">
+                 <number>0</number>
                 </property>
-                <property name="text">
-                 <string/>
+                <property name="rightMargin">
+                 <number>0</number>
                 </property>
-                <property name="pixmap">
-                 <pixmap resource="resources.qrc">:/images/resources/images/defaultposter.png</pixmap>
+                <property name="bottomMargin">
+                 <number>0</number>
                 </property>
-                <property name="scaledContents">
-                 <bool>true</bool>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignmentFlag::AlignCenter</set>
-                </property>
-               </widget>
-               <widget class="QLabel" name="details_title">
-                <property name="geometry">
-                 <rect>
-                  <x>170</x>
-                  <y>10</y>
-                  <width>291</width>
-                  <height>41</height>
-                 </rect>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Verdana</family>
-                  <pointsize>15</pointsize>
-                  <italic>false</italic>
-                  <bold>true</bold>
-                  <underline>false</underline>
-                  <strikeout>false</strikeout>
-                  <kerning>true</kerning>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">color: white;
+                <item>
+                 <widget class="QFrame" name="upper_frame">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="35,65">
+                   <property name="spacing">
+                    <number>0</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QFrame" name="upper_left">
+                     <property name="frameShape">
+                      <enum>QFrame::Shape::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Shadow::Raised</enum>
+                     </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_9">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="_poster">
+                        <property name="enabled">
+                         <bool>true</bool>
+                        </property>
+                        <property name="sizePolicy">
+                         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                          <horstretch>0</horstretch>
+                          <verstretch>0</verstretch>
+                         </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                         <size>
+                          <width>150</width>
+                          <height>222</height>
+                         </size>
+                        </property>
+                        <property name="maximumSize">
+                         <size>
+                          <width>16777215</width>
+                          <height>16777215</height>
+                         </size>
+                        </property>
+                        <property name="sizeIncrement">
+                         <size>
+                          <width>0</width>
+                          <height>0</height>
+                         </size>
+                        </property>
+                        <property name="styleSheet">
+                         <string notr="true">QLabel {
+    background-color: lightblue; /* Set the background color */
+    border: 2px solid white;     /* Set a border around the label */
+    border-radius: 0px;         /* Set the corner radius */
+    padding: 2px;               /* Add padding inside the label */
+}
 </string>
-                </property>
-                <property name="text">
-                 <string>Seasoned with Love dsf sdf sdf sdf sdf sdfs dfds</string>
-                </property>
-                <property name="textFormat">
-                 <enum>Qt::TextFormat::RichText</enum>
-                </property>
-                <property name="scaledContents">
-                 <bool>false</bool>
-                </property>
-               </widget>
-               <widget class="QWidget" name="gridLayoutWidget">
-                <property name="geometry">
-                 <rect>
-                  <x>170</x>
-                  <y>50</y>
-                  <width>281</width>
-                  <height>181</height>
-                 </rect>
-                </property>
-                <layout class="QGridLayout" name="gridLayout" columnminimumwidth="0,0">
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="_country">
-                   <property name="font">
-                    <font>
-                     <pointsize>14</pointsize>
-                    </font>
+                        </property>
+                        <property name="text">
+                         <string/>
+                        </property>
+                        <property name="pixmap">
+                         <pixmap resource="resources.qrc">:/images/resources/images/defaultposter.png</pixmap>
+                        </property>
+                        <property name="scaledContents">
+                         <bool>true</bool>
+                        </property>
+                        <property name="margin">
+                         <number>0</number>
+                        </property>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QFrame" name="upeer_right">
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="frameShape">
+                      <enum>QFrame::Shape::StyledPanel</enum>
+                     </property>
+                     <property name="frameShadow">
+                      <enum>QFrame::Shadow::Raised</enum>
+                     </property>
+                     <layout class="QVBoxLayout" name="verticalLayout_3" stretch="20,80">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QLabel" name="_title">
+                        <property name="font">
+                         <font>
+                          <pointsize>20</pointsize>
+                          <bold>true</bold>
+                         </font>
+                        </property>
+                        <property name="text">
+                         <string>Movie Name ABC</string>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                        </property>
+                        <property name="wordWrap">
+                         <bool>false</bool>
+                        </property>
+                       </widget>
+                      </item>
+                      <item>
+                       <layout class="QGridLayout" name="gridLayout">
+                        <item row="0" column="0">
+                         <widget class="QLabel" name="Year">
+                          <property name="font">
+                           <font>
+                            <pointsize>14</pointsize>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>          Year : </string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="1">
+                         <widget class="QLabel" name="_language_2">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="layoutDirection">
+                           <enum>Qt::LayoutDirection::LeftToRight</enum>
+                          </property>
+                          <property name="text">
+                           <string>Bangla</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="1">
+                         <widget class="QLabel" name="_runtime">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="layoutDirection">
+                           <enum>Qt::LayoutDirection::LeftToRight</enum>
+                          </property>
+                          <property name="text">
+                           <string>115</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="3" column="0">
+                         <widget class="QLabel" name="Runtime">
+                          <property name="font">
+                           <font>
+                            <pointsize>14</pointsize>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>          Runtime :</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="0">
+                         <widget class="QLabel" name="Director">
+                          <property name="font">
+                           <font>
+                            <pointsize>14</pointsize>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>          Director :</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="0">
+                         <widget class="QLabel" name="Country">
+                          <property name="font">
+                           <font>
+                            <pointsize>14</pointsize>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>          Country :</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="0">
+                         <widget class="QLabel" name="Genre">
+                          <property name="font">
+                           <font>
+                            <pointsize>14</pointsize>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>          Genre :</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="0" column="1">
+                         <widget class="QLabel" name="_year">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="layoutDirection">
+                           <enum>Qt::LayoutDirection::LeftToRight</enum>
+                          </property>
+                          <property name="text">
+                           <string>2025</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="5" column="0">
+                         <widget class="QLabel" name="Language">
+                          <property name="font">
+                           <font>
+                            <pointsize>14</pointsize>
+                            <bold>true</bold>
+                           </font>
+                          </property>
+                          <property name="text">
+                           <string>          Language :</string>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="4" column="1">
+                         <widget class="QLabel" name="_language">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="layoutDirection">
+                           <enum>Qt::LayoutDirection::LeftToRight</enum>
+                          </property>
+                          <property name="text">
+                           <string>USA</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="1" column="1">
+                         <widget class="QLabel" name="_director">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="layoutDirection">
+                           <enum>Qt::LayoutDirection::LeftToRight</enum>
+                          </property>
+                          <property name="text">
+                           <string>Christ</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                        <item row="2" column="1">
+                         <widget class="QLabel" name="_genre">
+                          <property name="font">
+                           <font>
+                            <pointsize>15</pointsize>
+                           </font>
+                          </property>
+                          <property name="layoutDirection">
+                           <enum>Qt::LayoutDirection::LeftToRight</enum>
+                          </property>
+                          <property name="text">
+                           <string>Sci-Fi</string>
+                          </property>
+                          <property name="alignment">
+                           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                         </widget>
+                        </item>
+                       </layout>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="lower_frame">
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QVBoxLayout" name="verticalLayout_4" stretch="70,30">
+                   <property name="spacing">
+                    <number>0</number>
                    </property>
-                   <property name="text">
-                    <string>Country</string>
+                   <property name="leftMargin">
+                    <number>0</number>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QLabel" name="label_director">
-                   <property name="text">
-                    <string>Nolal Babu</string>
+                   <property name="topMargin">
+                    <number>0</number>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="1">
-                  <widget class="QLabel" name="label_country">
-                   <property name="text">
-                    <string>BD</string>
+                   <property name="rightMargin">
+                    <number>0</number>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QLabel" name="label_year">
-                   <property name="text">
-                    <string>2025</string>
+                   <property name="bottomMargin">
+                    <number>0</number>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="_year">
-                   <property name="font">
-                    <font>
-                     <pointsize>14</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Year</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QLabel" name="label_genre">
-                   <property name="text">
-                    <string>Sci-Fi</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="_director">
-                   <property name="font">
-                    <font>
-                     <pointsize>14</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Director:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="_runtime">
-                   <property name="font">
-                    <font>
-                     <pointsize>14</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Runtime:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="_genre">
-                   <property name="font">
-                    <font>
-                     <pointsize>14</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Genre:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="1">
-                  <widget class="QLabel" name="label_runtime">
-                   <property name="text">
-                    <string>125</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="0">
-                  <widget class="QLabel" name="_language">
-                   <property name="font">
-                    <font>
-                     <pointsize>14</pointsize>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Language</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="1">
-                  <widget class="QLabel" name="label_language">
-                   <property name="text">
-                    <string>Eng</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
+                   <item>
+                    <widget class="QWidget" name="up_d" native="true">
+                     <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="20,80">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QWidget" name="lefty" native="true">
+                        <layout class="QVBoxLayout" name="verticalLayout_5">
+                         <item>
+                          <widget class="QLabel" name="Actors">
+                           <property name="font">
+                            <font>
+                             <pointsize>14</pointsize>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Actors :</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="Plot">
+                           <property name="font">
+                            <font>
+                             <pointsize>14</pointsize>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Plot :</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="Awards">
+                           <property name="font">
+                            <font>
+                             <pointsize>14</pointsize>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Awards :</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="righty" native="true">
+                        <layout class="QVBoxLayout" name="verticalLayout_6">
+                         <item>
+                          <widget class="QLabel" name="_actors">
+                           <property name="font">
+                            <font>
+                             <pointsize>14</pointsize>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Roberto Benigni, Nicoletta Braschi, Giorg</string>
+                           </property>
+                           <property name="scaledContents">
+                            <bool>false</bool>
+                           </property>
+                           <property name="wordWrap">
+                            <bool>true</bool>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="_plot">
+                           <property name="font">
+                            <font>
+                             <pointsize>14</pointsize>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Dyamn Nigga</string>
+                           </property>
+                           <property name="wordWrap">
+                            <bool>true</bool>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="_awards">
+                           <property name="font">
+                            <font>
+                             <pointsize>14</pointsize>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="text">
+                            <string>Oscar</string>
+                           </property>
+                           <property name="wordWrap">
+                            <bool>true</bool>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QWidget" name="down_d" native="true">
+                     <layout class="QHBoxLayout" name="horizontalLayout_11">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QWidget" name="w1" native="true">
+                        <widget class="QPushButton" name="pushButton">
+                         <property name="geometry">
+                          <rect>
+                           <x>20</x>
+                           <y>20</y>
+                           <width>80</width>
+                           <height>24</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>PushButton</string>
+                         </property>
+                        </widget>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="w2" native="true">
+                        <layout class="QHBoxLayout" name="horizontalLayout_12">
+                         <item>
+                          <widget class="QLabel" name="imdb_logo">
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="scaledContents">
+                            <bool>true</bool>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_2">
+                           <property name="text">
+                            <string>TextLabel</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="w3" native="true"/>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="w4" native="true">
+                        <widget class="QPushButton" name="pushButton_2">
+                         <property name="geometry">
+                          <rect>
+                           <x>20</x>
+                           <y>20</y>
+                           <width>80</width>
+                           <height>24</height>
+                          </rect>
+                         </property>
+                         <property name="text">
+                          <string>PushButton</string>
+                         </property>
+                        </widget>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
               </widget>
              </item>
             </layout>
@@ -438,7 +870,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QListView" name="listview_saved"/>
+          <widget class="QListView" name="listview_saved">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
