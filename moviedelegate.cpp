@@ -17,6 +17,7 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
 
 
     QPixmap poster = index.data(MovieModel::PosterRole).value<QPixmap>();
+    poster.scaled(155,222);
     QRect posterRect(rect.left() + 10, rect.top() + 5, 50, 75);
     painter->drawPixmap(posterRect, poster.scaled(posterRect.size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
 
@@ -64,4 +65,20 @@ QSize MovieDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIn
     Q_UNUSED(option);
     Q_UNUSED(index);
     return QSize(250, 85);
+}
+
+bool MovieDelegate::editorEvent(QEvent *event, QAbstractItemModel *model,
+                                const QStyleOptionViewItem &option, const QModelIndex &index)
+{
+    // Check if the event is a mouse button press
+    if (event->type() == QEvent::MouseButtonPress) {
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+        if (option.rect.contains(mouseEvent->pos())) {
+            //qDebug() << "Item clicked at row:" << index.row();
+            emit itemClicked(index);
+            return true;
+        }
+    }
+
+    return QStyledItemDelegate::editorEvent(event, model, option, index);
 }

@@ -26,6 +26,8 @@ public:
 private slots:
     void on_searchBtn_clicked();
     void onDataReceived(QString jsonData);
+    void onMovieItemClicked(const QModelIndex &index);
+
 
 private:
     Ui::WatchList *ui;

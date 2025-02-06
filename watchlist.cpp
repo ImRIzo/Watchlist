@@ -63,6 +63,15 @@ void WatchList::fuck(QString jsonData){
     listView->setModel(model);
     listView->setItemDelegate(delegate);
     listView->setSelectionMode(QAbstractItemView::SingleSelection);
+    // Connect the delegate signal to a slot that handles clicks
+    connect(delegate, &MovieDelegate::itemClicked, this, &WatchList::onMovieItemClicked);
 
     model->ShowSearchResult(jsonData);
 }
+// This function is triggered when a movie item is clicked
+void WatchList::onMovieItemClicked(const QModelIndex &index)
+{
+    QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
+    qDebug() << "Clicked movie:" << imdbID;
+}
+

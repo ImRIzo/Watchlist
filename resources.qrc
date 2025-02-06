@@ -2,5 +2,7 @@
     <qresource prefix="/images">
         <file>resources/images/defaultposter.png</file>
         <file>resources/images/appicon.png</file>
+        <file>resources/images/loading.gif</file>
+        <file>resources/images/nosferatu.jpg</file>
     </qresource>
 </RCC>
