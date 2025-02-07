@@ -389,7 +389,72 @@
                    <item>
                     <widget class="QFrame" name="upeer_right">
                      <property name="styleSheet">
-                      <string notr="true"/>
+                      <string notr="true">/* Main Grid Background */
+QWidget {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 #1E3C72, 
+                                stop:1 #2A5298); /* Blue gradient background */
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Grid Items (Labels, Buttons, Inputs) */
+QLabel, QPushButton, QLineEdit {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Prevents border overlap */
+}
+
+/* Grid Button Styling */
+QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 #4A90E2, 
+                                stop:1 #1C62B9);
+    border: 2px solid #357ABD;
+    padding: 10px;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 #62A9F4, 
+                                stop:1 #2A73D9);
+    border: 2px solid #2A73D9;
+}
+
+QPushButton:pressed {
+    background: #1C62B9;
+    border: 2px solid #0E4A91;
+}
+
+/* Text Input Fields */
+QLineEdit {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid #5A89C4;
+    padding: 6px;
+}
+
+/* Table/Grid View */
+QTableView {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid #357ABD; /* Proper spacing */
+    gridline-color: #5A89C4;
+    color: white;
+    selection-background-color: #357ABD;
+}
+
+/* Table Header */
+QHeaderView::section {
+    background: #1C62B9;
+    color: white;
+    font-weight: bold;
+    padding: 6px;
+    border: 2px solid #357ABD;
+}
+</string>
                      </property>
                      <property name="frameShape">
                       <enum>QFrame::Shape::StyledPanel</enum>
@@ -417,7 +482,7 @@
                        <widget class="QLabel" name="_title">
                         <property name="font">
                          <font>
-                          <pointsize>20</pointsize>
+                          <pointsize>-1</pointsize>
                           <bold>true</bold>
                          </font>
                         </property>
@@ -438,7 +503,7 @@
                          <widget class="QLabel" name="Year">
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>-1</pointsize>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -451,7 +516,8 @@
                          <widget class="QLabel" name="_language_2">
                           <property name="font">
                            <font>
-                            <pointsize>15</pointsize>
+                            <pointsize>-1</pointsize>
+                            <bold>true</bold>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -469,7 +535,8 @@
                          <widget class="QLabel" name="_runtime">
                           <property name="font">
                            <font>
-                            <pointsize>15</pointsize>
+                            <pointsize>-1</pointsize>
+                            <bold>true</bold>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -487,7 +554,7 @@
                          <widget class="QLabel" name="Runtime">
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>-1</pointsize>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -500,7 +567,7 @@
                          <widget class="QLabel" name="Director">
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>-1</pointsize>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -513,7 +580,7 @@
                          <widget class="QLabel" name="Country">
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>-1</pointsize>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -526,7 +593,7 @@
                          <widget class="QLabel" name="Genre">
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>-1</pointsize>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -539,7 +606,8 @@
                          <widget class="QLabel" name="_year">
                           <property name="font">
                            <font>
-                            <pointsize>15</pointsize>
+                            <pointsize>-1</pointsize>
+                            <bold>true</bold>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -557,7 +625,7 @@
                          <widget class="QLabel" name="Language">
                           <property name="font">
                            <font>
-                            <pointsize>14</pointsize>
+                            <pointsize>-1</pointsize>
                             <bold>true</bold>
                            </font>
                           </property>
@@ -570,7 +638,8 @@
                          <widget class="QLabel" name="_language">
                           <property name="font">
                            <font>
-                            <pointsize>15</pointsize>
+                            <pointsize>-1</pointsize>
+                            <bold>true</bold>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -588,7 +657,8 @@
                          <widget class="QLabel" name="_director">
                           <property name="font">
                            <font>
-                            <pointsize>15</pointsize>
+                            <pointsize>-1</pointsize>
+                            <bold>true</bold>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -606,7 +676,8 @@
                          <widget class="QLabel" name="_genre">
                           <property name="font">
                            <font>
-                            <pointsize>15</pointsize>
+                            <pointsize>-1</pointsize>
+                            <bold>true</bold>
                            </font>
                           </property>
                           <property name="layoutDirection">
@@ -631,7 +702,17 @@
                 <item>
                  <widget class="QFrame" name="lower_frame">
                   <property name="styleSheet">
-                   <string notr="true"/>
+                   <string notr="true">#lower_frame {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 #0F2027, 
+                                stop:0.5 #203A43, 
+                                stop:1 #2C5364); /* Dark blue gradient */
+    
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle glowing border */
+    border-radius: 12px; /* Soft rounded corners */
+    padding: 10px;
+}
+</string>
                   </property>
                   <property name="frameShape">
                    <enum>QFrame::Shape::StyledPanel</enum>
@@ -657,21 +738,18 @@
                    </property>
                    <item>
                     <widget class="QWidget" name="up_d" native="true">
-                     <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="20,80">
-                      <property name="spacing">
-                       <number>0</number>
-                      </property>
+                     <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="10,60,30">
                       <property name="leftMargin">
-                       <number>0</number>
+                       <number>9</number>
                       </property>
                       <property name="topMargin">
-                       <number>0</number>
+                       <number>9</number>
                       </property>
                       <property name="rightMargin">
-                       <number>0</number>
+                       <number>9</number>
                       </property>
                       <property name="bottomMargin">
-                       <number>0</number>
+                       <number>9</number>
                       </property>
                       <item>
                        <widget class="QWidget" name="lefty" native="true">
@@ -680,7 +758,7 @@
                           <widget class="QLabel" name="Actors">
                            <property name="font">
                             <font>
-                             <pointsize>14</pointsize>
+                             <pointsize>12</pointsize>
                              <bold>true</bold>
                             </font>
                            </property>
@@ -693,7 +771,7 @@
                           <widget class="QLabel" name="Plot">
                            <property name="font">
                             <font>
-                             <pointsize>14</pointsize>
+                             <pointsize>12</pointsize>
                              <bold>true</bold>
                             </font>
                            </property>
@@ -706,7 +784,7 @@
                           <widget class="QLabel" name="Awards">
                            <property name="font">
                             <font>
-                             <pointsize>14</pointsize>
+                             <pointsize>12</pointsize>
                              <bold>true</bold>
                             </font>
                            </property>
@@ -725,7 +803,7 @@
                           <widget class="QLabel" name="_actors">
                            <property name="font">
                             <font>
-                             <pointsize>14</pointsize>
+                             <pointsize>12</pointsize>
                              <bold>false</bold>
                             </font>
                            </property>
@@ -744,7 +822,7 @@
                           <widget class="QLabel" name="_plot">
                            <property name="font">
                             <font>
-                             <pointsize>14</pointsize>
+                             <pointsize>12</pointsize>
                              <bold>false</bold>
                             </font>
                            </property>
@@ -760,7 +838,7 @@
                           <widget class="QLabel" name="_awards">
                            <property name="font">
                             <font>
-                             <pointsize>14</pointsize>
+                             <pointsize>12</pointsize>
                              <bold>false</bold>
                             </font>
                            </property>
@@ -775,12 +853,156 @@
                         </layout>
                        </widget>
                       </item>
+                      <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignVCenter">
+                       <widget class="QWidget" name="widget" native="true">
+                        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="0,0,0">
+                         <property name="spacing">
+                          <number>10</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>50</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QPushButton" name="youtube_button">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>30</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>120</width>
+                             <height>120</height>
+                            </size>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="toolTip">
+                            <string comment="yoo" extracomment="Watch Trailer"/>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">#youtube_button {
+    border: none;
+    background: transparent;
+    border-image: url(:/images/resources/images/youtube.png) 0 0 0 0 stretch stretch;
+}
+</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="google_button">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>30</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>120</width>
+                             <height>120</height>
+                            </size>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="toolTip">
+                            <string extracomment="Search on Google"/>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">#google_button {
+    border: none;
+    background: transparent;
+    border-image: url(:/images/resources/images/search.png) 0 0 0 0 stretch stretch;
+}
+</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QPushButton" name="download_button">
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>40</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>120</width>
+                             <height>120</height>
+                            </size>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="toolTip">
+                            <string extracomment="Download"/>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">#download_button {
+    border: none;
+    background: transparent;
+    border-image: url(:/images/resources/images/download.png) 0 0 0 0 stretch stretch;
+}
+</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="iconSize">
+                            <size>
+                             <width>16</width>
+                             <height>16</height>
+                            </size>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
                      </layout>
                     </widget>
                    </item>
                    <item>
                     <widget class="QWidget" name="down_d" native="true">
-                     <layout class="QHBoxLayout" name="horizontalLayout_11">
+                     <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="25,25,25,25">
                       <property name="spacing">
                        <number>0</number>
                       </property>
@@ -798,38 +1020,54 @@
                       </property>
                       <item>
                        <widget class="QWidget" name="w1" native="true">
-                        <widget class="QPushButton" name="pushButton">
-                         <property name="geometry">
-                          <rect>
-                           <x>20</x>
-                           <y>20</y>
-                           <width>80</width>
-                           <height>24</height>
-                          </rect>
+                        <layout class="QHBoxLayout" name="horizontalLayout_14">
+                         <property name="spacing">
+                          <number>5</number>
                          </property>
-                         <property name="text">
-                          <string>PushButton</string>
+                         <property name="leftMargin">
+                          <number>0</number>
                          </property>
-                        </widget>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QWidget" name="w2" native="true">
-                        <layout class="QHBoxLayout" name="horizontalLayout_12">
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
                          <item>
-                          <widget class="QLabel" name="imdb_logo">
+                          <widget class="QPushButton" name="back_button">
+                           <property name="minimumSize">
+                            <size>
+                             <width>60</width>
+                             <height>60</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>60</width>
+                             <height>60</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="autoFillBackground">
+                            <bool>false</bool>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">#back_button {
+    border: none;
+    background: transparent;
+    border-image: url(:/images/resources/images/back_button.png) 0 0 0 0 stretch stretch;
+}
+</string>
+                           </property>
                            <property name="text">
                             <string/>
-                           </property>
-                           <property name="scaledContents">
-                            <bool>true</bool>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLabel" name="label_2">
-                           <property name="text">
-                            <string>TextLabel</string>
                            </property>
                           </widget>
                          </item>
@@ -837,23 +1075,227 @@
                        </widget>
                       </item>
                       <item>
-                       <widget class="QWidget" name="w3" native="true"/>
+                       <widget class="QWidget" name="w2" native="true">
+                        <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="0,0">
+                         <property name="spacing">
+                          <number>5</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QLabel" name="imdb_logo">
+                           <property name="maximumSize">
+                            <size>
+                             <width>80</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="pixmap">
+                            <pixmap resource="resources.qrc">:/images/resources/images/IMDB_Logo_2016.svg</pixmap>
+                           </property>
+                           <property name="scaledContents">
+                            <bool>true</bool>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="_imdbrating">
+                           <property name="enabled">
+                            <bool>true</bool>
+                           </property>
+                           <property name="sizePolicy">
+                            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                             <horstretch>0</horstretch>
+                             <verstretch>0</verstretch>
+                            </sizepolicy>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>80</width>
+                             <height>80</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>150</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>20</pointsize>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">#_imdbrating {
+    border: none;
+    background: transparent;
+    border-image: url(:/images/resources/images/imdb_rating.png) 0 0 0 0 stretch stretch;
+}
+</string>
+                           </property>
+                           <property name="text">
+                            <string>9.9</string>
+                           </property>
+                           <property name="scaledContents">
+                            <bool>true</bool>
+                           </property>
+                           <property name="alignment">
+                            <set>Qt::AlignmentFlag::AlignCenter</set>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
+                      </item>
+                      <item>
+                       <widget class="QWidget" name="w3" native="true">
+                        <layout class="QHBoxLayout" name="horizontalLayout_13">
+                         <property name="spacing">
+                          <number>5</number>
+                         </property>
+                         <property name="leftMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QLabel" name="tomato_logo">
+                           <property name="maximumSize">
+                            <size>
+                             <width>80</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                           <property name="pixmap">
+                            <pixmap resource="resources.qrc">:/images/resources/images/Rotten_Tomatoes_logo.svg</pixmap>
+                           </property>
+                           <property name="scaledContents">
+                            <bool>true</bool>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="_rottenrating">
+                           <property name="enabled">
+                            <bool>true</bool>
+                           </property>
+                           <property name="minimumSize">
+                            <size>
+                             <width>80</width>
+                             <height>80</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>150</width>
+                             <height>150</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>12</pointsize>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">#_rottenrating {
+    border: none;
+    background: transparent;
+    border-image: url(:/images/resources/images/rotten_rating.png) 0 0 0 0 stretch stretch;
+}
+</string>
+                           </property>
+                           <property name="text">
+                            <string>99%</string>
+                           </property>
+                           <property name="scaledContents">
+                            <bool>true</bool>
+                           </property>
+                           <property name="alignment">
+                            <set>Qt::AlignmentFlag::AlignCenter</set>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </widget>
                       </item>
                       <item>
                        <widget class="QWidget" name="w4" native="true">
-                        <widget class="QPushButton" name="pushButton_2">
-                         <property name="geometry">
-                          <rect>
-                           <x>20</x>
-                           <y>20</y>
-                           <width>80</width>
-                           <height>24</height>
-                          </rect>
+                        <layout class="QHBoxLayout" name="horizontalLayout_15">
+                         <property name="spacing">
+                          <number>5</number>
                          </property>
-                         <property name="text">
-                          <string>PushButton</string>
+                         <property name="leftMargin">
+                          <number>0</number>
                          </property>
-                        </widget>
+                         <property name="topMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="rightMargin">
+                          <number>0</number>
+                         </property>
+                         <property name="bottomMargin">
+                          <number>0</number>
+                         </property>
+                         <item>
+                          <widget class="QPushButton" name="addwatchlist_button">
+                           <property name="minimumSize">
+                            <size>
+                             <width>50</width>
+                             <height>50</height>
+                            </size>
+                           </property>
+                           <property name="maximumSize">
+                            <size>
+                             <width>60</width>
+                             <height>60</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <pointsize>8</pointsize>
+                             <bold>true</bold>
+                            </font>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">#addwatchlist_button {
+    border: none;
+    background: transparent;
+    border-image: url(:/images/resources/images/add_list.png) 0 0 0 0 stretch stretch;
+}
+</string>
+                           </property>
+                           <property name="text">
+                            <string/>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
                        </widget>
                       </item>
                      </layout>

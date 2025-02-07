@@ -5,5 +5,12 @@
         <file>resources/images/loading.gif</file>
         <file>resources/images/IMDB_Logo_2016.svg</file>
         <file>resources/images/Rotten_Tomatoes_logo.svg</file>
+        <file>resources/images/imdb_rating.png</file>
+        <file>resources/images/rotten_rating.png</file>
+        <file>resources/images/back_button.png</file>
+        <file>resources/images/add_list.png</file>
+        <file>resources/images/download.png</file>
+        <file>resources/images/search.png</file>
+        <file>resources/images/youtube.png</file>
     </qresource>
 </RCC>
