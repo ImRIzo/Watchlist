@@ -6,13 +6,19 @@ serverdata::serverdata(QObject *parent): QObject{parent}
     manager = new QNetworkAccessManager(this);
     connect(manager, &QNetworkAccessManager::finished, this, &serverdata::onReplyFinished);
 }
-void serverdata::GetData(QString apikey, QString title)
+void serverdata::GetData(QString apikey, QString titleORid, bool isTitle)
 {
 
     QUrl url("http://www.omdbapi.com/");
     QUrlQuery query;
     query.addQueryItem("apikey", apikey);
-    query.addQueryItem("s", title);
+
+    if(isTitle==true){
+        query.addQueryItem("s", titleORid);
+    }else{
+        query.addQueryItem("i", titleORid);
+    }
+
     url.setQuery(query);
 
     // Send the GET request

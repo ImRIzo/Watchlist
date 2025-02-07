@@ -16,7 +16,7 @@ class serverdata : public QObject
 public:
     explicit serverdata(QObject *parent = nullptr);
     // json data downloading function
-    void GetData(QString apikey,QString title);
+    void GetData(QString apikey,QString titleORid, bool isTitle);
     // image downloading function
     QPixmap downloadImage(QString url);
 

@@ -1,9 +1,6 @@
 #include "watchlist.h"
 #include "serverdata.h"
 #include "./ui_watchlist.h"
-#include <qfile.h>
-#include <QLineEdit>
-#include <QDebug>
 
 WatchList::WatchList(QWidget *parent)
     : QMainWindow(parent)
@@ -32,17 +29,21 @@ void WatchList::GetAPIkey()
 
 WatchList::~WatchList()
 {
-    delete ui;
+    delete movie;
+    delete ui;    
 }
 
 // once the search button is clicked this function .............
 void WatchList::on_searchBtn_clicked()
 {
+    // make sure we are on the first page..
+    on_back_button_clicked();
+
     QString title = ui->searchBox->text();
     serverdata *sd = new serverdata(this);
     // Connect the dataReceived signal to the onDataReceived slot
     connect(sd, &serverdata::dataReceived, this, &WatchList::onDataReceived);
-    sd->GetData(apiKey, title);
+    sd->GetData(apiKey, title, true); // true means i'm sending title from here false means imdb id
 }
 // this slot triggers when we get data
 void WatchList::onDataReceived(QString jsonData) {
@@ -66,14 +67,105 @@ void WatchList::fuck(QString jsonData){
     // Connect the delegate signal to a slot that handles clicks
     connect(delegate, &MovieDelegate::itemClicked, this, &WatchList::onMovieItemClicked);
 
-    model->ShowSearchResult(jsonData);
+    model->ShowSearchResult(jsonData, MovieModel::DataType::SearchData);
 }
 // This function is triggered when a movie item is clicked
 void WatchList::onMovieItemClicked(const QModelIndex &index)
-{
-    QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
-    qDebug() << "Clicked movie:" << imdbID;
-    ui->stackedWidget->setCurrentWidget(ui->details_page);
+{   //show loading gif...
+    ui->stackedWidget->setCurrentWidget(ui->loading_page);
 
+    QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
+    posterMap = index.model()->data(index, MovieModel::PosterRole).value<QPixmap>();
+    qDebug() << "Clicked movie:" << imdbID;
+
+    // if we alreadt checked the movie details then we will skil fetching data
+    // rather just go to the details page
+    if(temporaryID==imdbID){
+        ui->stackedWidget->setCurrentWidget(ui->details_page);
+        return;
+    }
+    temporaryID = imdbID;
+
+    // play loading animation .............
+    QLabel *label = ui->loading_gif;
+    movie = new QMovie(":/images/resources/images/loading.gif");
+    label->setMovie(movie);
+    movie->start();
+
+    serverdata *sd = new serverdata(this);
+    // Connect the dataReceived signal to the onDataReceived slot
+    connect(sd, &serverdata::dataReceived, this, &WatchList::showMovieDetails);
+    sd->GetData(apiKey, imdbID, false); // true means i'm sending title from here false means imdb id
+
+}
+
+void WatchList :: showMovieDetails(QString jsonData)
+{
+    detailedModel = new MovieModel(this);
+    MovieDetails details = detailedModel->movieDetailedShow(jsonData);
+
+// showing data begin
+    ui->_title->setText(details.Title);
+    ui->_year->setText(details.Year);
+    ui->_genre->setText(details.Genre);
+    ui->_director->setText(details.Director);
+    ui->_country->setText(details.Language);
+    ui->_runtime->setText(details.Runtime);
+    ui->_country->setText(details.Country);
+    ui->_actors->setText(details.Actors);
+    ui->_plot->setText(details.Plot);
+    ui->_awards->setText(details.Awards);
+
+    for (const auto &rating : details.Ratings) {
+        //qDebug() << rating.first << ": " << rating.second;
+        if(rating.first == "Internet Movie Database"){
+            ui->_imdbrating->setText(rating.second);
+        }else if(rating.first == "Rotten Tomatoes"){
+            ui->_rottenrating->setText(rating.second);
+        }
+    }
+
+    ui->_poster->setPixmap(posterMap);
+
+
+    ui->stackedWidget->setCurrentWidget(ui->details_page);
+}
+
+void WatchList::on_back_button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->searchlist_page);
+}
+
+
+void WatchList::on_youtube_button_clicked()
+{
+    QString title = ui->_title->text();
+    QString year = ui->_year->text();
+    QString url = "https://www.youtube.com/results?search_query=";
+    url = url + title + "+" +year;
+    url = url.replace(" ", "+");
+    QDesktopServices::openUrl(QUrl(url));
+}
+
+
+void WatchList::on_google_button_clicked()
+{
+    QString title = ui->_title->text();
+    QString year = ui->_year->text();
+    QString url = "https://www.google.com/search?q=";
+    url = url + title + "+"+year;
+    url = url.replace(" ", "+");
+    QDesktopServices::openUrl(QUrl(url));
+}
+
+
+void WatchList::on_download_button_clicked()
+{
+    QString title = ui->_title->text();
+    QString year = ui->_year->text();
+    QString url = "https://1337x.to/search/";
+    url = url + title +"+"+year + "/1/";
+    url = url.replace(" ", "+");
+    QDesktopServices::openUrl(QUrl(url));
 }
 

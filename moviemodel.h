@@ -18,6 +18,21 @@ struct Movie {
     QPixmap Poster;
 };
 
+struct MovieDetails {
+    QString Title;
+    QString Year;
+    QString Genre;
+    QString Runtime;
+    QPixmap Poster;
+    QString Director;
+    QString Language;
+    QString Country;
+    QString Awards;
+    QString Actors;
+    QString Plot;
+    QVector<QPair<QString, QString>> Ratings;
+};
+
 class MovieModel : public QAbstractListModel
 {
     Q_OBJECT
@@ -31,17 +46,23 @@ public:
         PosterRole
     };
 
+    enum DataType{
+        SearchData,
+        DetailsData
+    };
+
     explicit MovieModel(QObject *parent = nullptr);
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     // this function shows the result
-    void ShowSearchResult(QString _jsonServerData);
+    void ShowSearchResult(QString _jsonServerData, DataType dataType);
+    MovieDetails movieDetailedShow(QString _jsonServerData) const;
 private:
     QList<Movie> movies;
     QString jsonServerData;
     void addMovie(const Movie &movie);
-    serverdata *serverData;
+    serverdata *serverData;    
 };
 
-#endif // MOVIEMODEL_H
+#endif

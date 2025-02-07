@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>576</height>
+    <height>700</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -219,11 +219,16 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">*{
+	background: #000000;
+}</string>
+            </property>
             <widget class="QLabel" name="loading_gif">
              <property name="geometry">
               <rect>
-               <x>70</x>
-               <y>50</y>
+               <x>120</x>
+               <y>100</y>
                <width>255</width>
                <height>255</height>
               </rect>
@@ -239,6 +244,12 @@
              </property>
              <property name="pixmap">
               <pixmap resource="resources.qrc">:/images/resources/images/loading.gif</pixmap>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </widget>
@@ -486,6 +497,16 @@ QHeaderView::section {
                           <bold>true</bold>
                          </font>
                         </property>
+                        <property name="styleSheet">
+                         <string notr="true">QLabel#_title {
+    font-size: 20px;  /* Adjust the size as needed */
+    font-weight: bold;
+    color: White;  /* Dark blue shade */
+    text-align: center;
+    padding: 5px;
+}
+</string>
+                        </property>
                         <property name="text">
                          <string>Movie Name ABC</string>
                         </property>
@@ -513,7 +534,7 @@ QHeaderView::section {
                          </widget>
                         </item>
                         <item row="5" column="1">
-                         <widget class="QLabel" name="_language_2">
+                         <widget class="QLabel" name="_language">
                           <property name="font">
                            <font>
                             <pointsize>-1</pointsize>
@@ -524,10 +545,13 @@ QHeaderView::section {
                            <enum>Qt::LayoutDirection::LeftToRight</enum>
                           </property>
                           <property name="text">
-                           <string>Bangla</string>
+                           <string>N/A</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                          <property name="wordWrap">
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -543,10 +567,13 @@ QHeaderView::section {
                            <enum>Qt::LayoutDirection::LeftToRight</enum>
                           </property>
                           <property name="text">
-                           <string>115</string>
+                           <string>N/A</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                          <property name="wordWrap">
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -614,10 +641,13 @@ QHeaderView::section {
                            <enum>Qt::LayoutDirection::LeftToRight</enum>
                           </property>
                           <property name="text">
-                           <string>2025</string>
+                           <string>N/A</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                          <property name="wordWrap">
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -635,7 +665,7 @@ QHeaderView::section {
                          </widget>
                         </item>
                         <item row="4" column="1">
-                         <widget class="QLabel" name="_language">
+                         <widget class="QLabel" name="_country">
                           <property name="font">
                            <font>
                             <pointsize>-1</pointsize>
@@ -646,10 +676,13 @@ QHeaderView::section {
                            <enum>Qt::LayoutDirection::LeftToRight</enum>
                           </property>
                           <property name="text">
-                           <string>USA</string>
+                           <string>N/A</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                          <property name="wordWrap">
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -665,10 +698,13 @@ QHeaderView::section {
                            <enum>Qt::LayoutDirection::LeftToRight</enum>
                           </property>
                           <property name="text">
-                           <string>Christ</string>
+                           <string>N/A</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                          <property name="wordWrap">
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -684,10 +720,13 @@ QHeaderView::section {
                            <enum>Qt::LayoutDirection::LeftToRight</enum>
                           </property>
                           <property name="text">
-                           <string>Sci-Fi</string>
+                           <string>N/A</string>
                           </property>
                           <property name="alignment">
                            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                          </property>
+                          <property name="wordWrap">
+                           <bool>true</bool>
                           </property>
                          </widget>
                         </item>
@@ -1055,6 +1094,9 @@ QHeaderView::section {
                              <bold>true</bold>
                             </font>
                            </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
                            <property name="autoFillBackground">
                             <bool>false</bool>
                            </property>
@@ -1136,26 +1178,21 @@ QHeaderView::section {
                            </property>
                            <property name="font">
                             <font>
-                             <pointsize>20</pointsize>
+                             <pointsize>18</pointsize>
                              <bold>true</bold>
                             </font>
                            </property>
                            <property name="styleSheet">
-                            <string notr="true">#_imdbrating {
-    border: none;
-    background: transparent;
-    border-image: url(:/images/resources/images/imdb_rating.png) 0 0 0 0 stretch stretch;
-}
-</string>
+                            <string notr="true"/>
                            </property>
                            <property name="text">
-                            <string>9.9</string>
+                            <string>N/A</string>
                            </property>
                            <property name="scaledContents">
                             <bool>true</bool>
                            </property>
                            <property name="alignment">
-                            <set>Qt::AlignmentFlag::AlignCenter</set>
+                            <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                            </property>
                           </widget>
                          </item>
@@ -1206,19 +1243,19 @@ QHeaderView::section {
                            </property>
                            <property name="minimumSize">
                             <size>
-                             <width>80</width>
-                             <height>80</height>
+                             <width>60</width>
+                             <height>60</height>
                             </size>
                            </property>
                            <property name="maximumSize">
                             <size>
-                             <width>150</width>
-                             <height>150</height>
+                             <width>70</width>
+                             <height>70</height>
                             </size>
                            </property>
                            <property name="font">
                             <font>
-                             <pointsize>12</pointsize>
+                             <pointsize>15</pointsize>
                              <bold>true</bold>
                             </font>
                            </property>
@@ -1231,7 +1268,7 @@ QHeaderView::section {
 </string>
                            </property>
                            <property name="text">
-                            <string>99%</string>
+                            <string>N/A</string>
                            </property>
                            <property name="scaledContents">
                             <bool>true</bool>
@@ -1281,6 +1318,9 @@ QHeaderView::section {
                              <pointsize>8</pointsize>
                              <bold>true</bold>
                             </font>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
                            </property>
                            <property name="styleSheet">
                             <string notr="true">#addwatchlist_button {
