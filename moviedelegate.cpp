@@ -8,6 +8,13 @@ void MovieDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
     painter->save();
     // this portion to draw rect
     QRect rect = option.rect;
+    rect.setTop(rect.top() + 2);
+    rect.setLeft(rect.left() + 2);
+    // Adds a top margin to prevent it from going outside the parent widget
+    QPainterPath path;
+    path.addRoundedRect(rect, 5, 5);
+    // // Fill the rect with rounded corners, and apply different colors based on selection state
+    painter->setClipPath(path);  // Apply the rounded path as clipping area
     painter->fillRect(rect, option.state & QStyle::State_Selected ? QColor(128,185,238) : QColor(85,156,228));
     // this shit draw borders
     QPen pen(QColor(173,216,255));

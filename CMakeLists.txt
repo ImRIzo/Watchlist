@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Network)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Sql)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -28,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         moviemodel.h moviemodel.cpp
         moviedelegate.h moviedelegate.cpp
         resources.qrc
+        localdatabse.h localdatabse.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
@@ -50,6 +52,7 @@ endif()
 
 target_link_libraries(Watchlist PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(Watchlist PRIVATE Qt6::Core Qt6::Gui Qt6::Network)
+target_link_libraries(Watchlist PRIVATE Qt6::Core Qt6::Gui Qt6::Sql)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

@@ -2,19 +2,20 @@
 #include "serverdata.h"
 #include "./ui_watchlist.h"
 
+
 WatchList::WatchList(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::WatchList)
 {
     ui->setupUi(this);
     GetAPIkey();
+    localDatabase = new LocalDatabse(this);
 }
 
 // Get the API key from config.txt file...
 void WatchList::GetAPIkey()
 {
     QString keyPath = QCoreApplication::applicationDirPath() + "/config.txt";
-
     QFile configFile(keyPath);
     if (configFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&configFile);
@@ -33,11 +34,16 @@ WatchList::~WatchList()
     delete ui;    
 }
 
+// this function executes once the return button is pressed.....
+void WatchList::on_searchBox_returnPressed()
+{
+    on_searchBtn_clicked();
+}
 // once the search button is clicked this function .............
 void WatchList::on_searchBtn_clicked()
 {
     // make sure we are on the first page..
-    on_back_button_clicked();
+    if(ui->stackedWidget->currentIndex()!=0)ui->stackedWidget->setCurrentWidget(ui->searchlist_page);
 
     QString title = ui->searchBox->text();
     serverdata *sd = new serverdata(this);
@@ -74,7 +80,7 @@ void WatchList::onMovieItemClicked(const QModelIndex &index)
 {   //show loading gif...
     ui->stackedWidget->setCurrentWidget(ui->loading_page);
 
-    QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
+    imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
     posterMap = index.model()->data(index, MovieModel::PosterRole).value<QPixmap>();
     qDebug() << "Clicked movie:" << imdbID;
 
@@ -167,5 +173,24 @@ void WatchList::on_download_button_clicked()
     url = url + title +"+"+year + "/1/";
     url = url.replace(" ", "+");
     QDesktopServices::openUrl(QUrl(url));
+}
+
+
+void WatchList::on_addwatchlist_button_clicked()
+{
+ // first we will look for if the movie data is already exist in our sqlite local database...
+    // if exists then will promt that the movie is already exist on your lis, else
+ // we will save the movie data in out database.. and data:
+ // Title, Yearm indbID, Poster, Rating, Watched/NotWatched
+
+ // let's check if the movie exist,
+
+ if (localDatabase->checkIfMovieExists(imdbID)) {
+     qDebug() << "Movie found: ";
+ }
+ else {
+     qDebug() << "Movie does not exist in the database. Inserting new details...";
+ }
+
 }
 

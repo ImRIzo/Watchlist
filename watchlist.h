@@ -5,12 +5,14 @@
 #include <QListView>
 #include "MovieModel.h"
 #include "MovieDelegate.h"
+#include "localdatabse.h"
 #include <QDesktopServices>
 #include <QLineEdit>
 #include <QDebug>
 #include <QLabel>
 #include <QMovie>
-#include <qfile.h>
+#include <QFile.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -43,6 +45,10 @@ private slots:
 
     void on_download_button_clicked();
 
+    void on_searchBox_returnPressed();
+
+    void on_addwatchlist_button_clicked();
+
 private:
     Ui::WatchList *ui;
     QListView *listView;
@@ -52,5 +58,7 @@ private:
     QString temporaryID = "";
     void fuck(QString jsonData);
     QPixmap posterMap;
+    QString imdbID;
+    LocalDatabse *localDatabase;
 };
 #endif // WATCHLIST_H

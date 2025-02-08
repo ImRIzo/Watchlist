@@ -27,10 +27,13 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">#centralwidget{
+    <string notr="true">#centralwidget {
     background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
-                                stop:0 rgba(0, 0, 0, 150), 
-                                stop:1 rgba(0, 0, 0, 0));
+                                stop:0 #0371C8,  /* Deep Orange */
+                                stop:1 #23A5E3); /* Soft Amber */
+    border: 2px solid #FF8C00; /* Warm orange border */
+    border-radius: 15px; /* Smooth rounded corners */
+    padding: 10px; /* Adds spacing inside */
 }
 </string>
    </property>
@@ -56,6 +59,12 @@
        </sizepolicy>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="50,50">
+       <property name="leftMargin">
+        <number>9</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
         <widget class="QWidget" name="searchbox_widget" native="true">
          <property name="sizePolicy">
@@ -82,7 +91,7 @@
             <property name="minimumSize">
              <size>
               <width>0</width>
-              <height>40</height>
+              <height>50</height>
              </size>
             </property>
             <property name="baseSize">
@@ -93,11 +102,37 @@
             </property>
             <property name="font">
              <font>
-              <pointsize>12</pointsize>
+              <pointsize>-1</pointsize>
              </font>
             </property>
             <property name="contextMenuPolicy">
              <enum>Qt::ContextMenuPolicy::DefaultContextMenu</enum>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit {
+    font-size: 18px;  /* Readable font size */
+    color: white;  /* White text for clarity */
+    background-color: rgba(30, 30, 30, 0.9);  /* Dark background for a sleek look */
+    border: 2px solid #FFD700;  /* Gold border for a premium feel */
+    border-radius: 8px;  /* Soft rounded edges */
+    padding: 8px 12px;  /* Comfortable padding */
+    selection-background-color: #FFD700;  /* Gold highlight for selected text */
+    selection-color: black;  /* High contrast for readability */
+}
+
+QLineEdit:focus {
+    border: 2px solid #FFA500;  /* Orange glow effect when focused */
+    background-color: rgba(50, 50, 50, 0.9);  /* Slightly lighter when active */
+}
+
+QLineEdit::placeholder {
+    color: #CCCCCC;  /* Light gray placeholder text */
+    font-style: italic;  /* Subtle style difference */
+}
+</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignCenter</set>
             </property>
             <property name="placeholderText">
              <string>Search for TV or Movie</string>
@@ -108,14 +143,39 @@
            <widget class="QPushButton" name="searchBtn">
             <property name="minimumSize">
              <size>
-              <width>40</width>
-              <height>40</height>
+              <width>50</width>
+              <height>50</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <pointsize>15</pointsize>
+              <pointsize>-1</pointsize>
              </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #4CAF50;  /* Green background */
+    border: none;
+    border-radius: 10px;  /* Rounded corners for a soft square look */
+    padding: 10px;  /* Spacing inside the button */
+    color: white;  /* Text color */
+    font-size: 24px;  /* Font size */
+    cursor: pointer;  /* Indicates the button is clickable */
+}
+
+QPushButton:hover {
+    background-color: #45a049;  /* Slightly darker green on hover */
+}
+
+QPushButton:pressed {
+    background-color: #388e3c;  /* Even darker green when pressed */
+}
+
+
+</string>
             </property>
             <property name="text">
              <string/>
@@ -159,11 +219,21 @@
             </property>
             <property name="font">
              <font>
-              <pointsize>12</pointsize>
+              <family>Yu Gothic UI</family>
+              <pointsize>-1</pointsize>
+              <bold>true</bold>
              </font>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    font-size: 24px;  /* Larger font size for prominence */
+    font-weight: bold;  /* Bold text to highlight the title */
+    color: #FF6F00;  /* Warm, inviting orange color */
+}
+</string>
+            </property>
             <property name="text">
-             <string>My Watchlist</string>
+             <string>My Watchlis</string>
             </property>
            </widget>
           </item>
@@ -211,6 +281,13 @@
                <property name="cursor" stdset="0">
                 <cursorShape>PointingHandCursor</cursorShape>
                </property>
+               <property name="styleSheet">
+                <string notr="true">    background-color: #1C1C1C; /* Dark theme */
+    border: 2px solid #B8860B; /* Deep gold border for a premium feel */
+    border-radius: 12px; /* Smooth rounded corners */
+    color: #E0E0E0; /* Light gray text for readability */
+    font-size: 16px;</string>
+               </property>
               </widget>
              </item>
             </layout>
@@ -220,8 +297,10 @@
              <bool>true</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">*{
+             <string notr="true">#loading_page{
 	background: #000000;
+	border: 2px solid #FF8C00; /* Warm orange border */
+    border-radius: 15px; /* Smooth rounded corners */
 }</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalbitch_2">
@@ -428,51 +507,13 @@ QLabel, QPushButton, QLineEdit {
     border: 2px solid rgba(255, 255, 255, 0.2); /* Prevents border overlap */
 }
 
-/* Grid Button Styling */
-QPushButton {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
-                                stop:0 #4A90E2, 
-                                stop:1 #1C62B9);
-    border: 2px solid #357ABD;
-    padding: 10px;
-}
 
-QPushButton:hover {
-    background: qlineargradient(x1:0, y1:0, x2:1, y2:1, 
-                                stop:0 #62A9F4, 
-                                stop:1 #2A73D9);
-    border: 2px solid #2A73D9;
-}
 
-QPushButton:pressed {
-    background: #1C62B9;
-    border: 2px solid #0E4A91;
-}
 
-/* Text Input Fields */
-QLineEdit {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid #5A89C4;
-    padding: 6px;
-}
 
-/* Table/Grid View */
-QTableView {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid #357ABD; /* Proper spacing */
-    gridline-color: #5A89C4;
-    color: white;
-    selection-background-color: #357ABD;
-}
 
-/* Table Header */
-QHeaderView::section {
-    background: #1C62B9;
-    color: white;
-    font-weight: bold;
-    padding: 6px;
-    border: 2px solid #357ABD;
-}
+
+
 </string>
                      </property>
                      <property name="frameShape">
@@ -501,17 +542,22 @@ QHeaderView::section {
                        <widget class="QLabel" name="_title">
                         <property name="font">
                          <font>
+                          <family>Cinematic</family>
                           <pointsize>-1</pointsize>
                           <bold>true</bold>
                          </font>
                         </property>
                         <property name="styleSheet">
                          <string notr="true">QLabel#_title {
-    font-size: 20px;  /* Adjust the size as needed */
+    font-size: 24px;  /* Slightly larger for emphasis */
     font-weight: bold;
-    color: White;  /* Dark blue shade */
+    color: #FFD700;  /* Gold color for a premium look */
     text-align: center;
-    padding: 5px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);  /* Subtle black overlay for contrast */
+    border-radius: 8px;  /* Rounded edges for a modern look */
+    border: 2px solid #DAA520;  /* Golden border for a classy feel */
+    font-family: &quot;Cinematic&quot;, &quot;Arial&quot;, sans-serif; /* Try to use a movie-style font */
 }
 </string>
                         </property>
@@ -519,10 +565,10 @@ QHeaderView::section {
                          <string>Movie Name ABC</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+                         <set>Qt::AlignmentFlag::AlignCenter</set>
                         </property>
                         <property name="wordWrap">
-                         <bool>false</bool>
+                         <bool>true</bool>
                         </property>
                        </widget>
                       </item>
@@ -787,13 +833,13 @@ QHeaderView::section {
                     <widget class="QWidget" name="up_d" native="true">
                      <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="10,60,30">
                       <property name="leftMargin">
-                       <number>9</number>
+                       <number>0</number>
                       </property>
                       <property name="topMargin">
-                       <number>9</number>
+                       <number>10</number>
                       </property>
                       <property name="rightMargin">
-                       <number>9</number>
+                       <number>0</number>
                       </property>
                       <property name="bottomMargin">
                        <number>9</number>
@@ -845,6 +891,9 @@ QHeaderView::section {
                       </item>
                       <item>
                        <widget class="QWidget" name="righty" native="true">
+                        <property name="styleSheet">
+                         <string notr="true"/>
+                        </property>
                         <layout class="QVBoxLayout" name="verticalLayout_6">
                          <item>
                           <widget class="QLabel" name="_actors">
@@ -1362,7 +1411,11 @@ QHeaderView::section {
          <item>
           <widget class="QListView" name="listview_saved">
            <property name="styleSheet">
-            <string notr="true"/>
+            <string notr="true">    background-color: #1C1C1C; /* Dark theme */
+    border: 2px solid #B8860B; /* Deep gold border for a premium feel */
+    border-radius: 12px; /* Smooth rounded corners */
+    color: #E0E0E0; /* Light gray text for readability */
+    font-size: 16px;</string>
            </property>
           </widget>
          </item>
@@ -1402,7 +1455,6 @@ QHeaderView::section {
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionLoad_Local_Data">
    <property name="text">
     <string>Load Local Data</string>

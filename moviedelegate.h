@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QStyledItemDelegate>
 #include <QMouseEvent>
+#include <QPainterPath>
 
 class MovieDelegate : public QStyledItemDelegate
 {
