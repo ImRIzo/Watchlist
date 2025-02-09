@@ -21,8 +21,9 @@ public:
     explicit LocalDatabse(QObject *parent = nullptr);
 
     bool checkIfMovieExists(QString imdbID);
-
+    void insertMovieDetails(QString imdbID, QString title, QString year, QString director);
 signals:
+    void dataInsertedLocally();
 
 private:
     QString getDatabasePath();

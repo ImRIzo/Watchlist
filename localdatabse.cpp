@@ -57,6 +57,25 @@ QString LocalDatabse :: getDatabasePath() {
 
 //     return false;
 // }
+
+
+// Insert movie details into the database
+void LocalDatabse :: insertMovieDetails( QString imdbID, QString title, QString year, QString director) {
+    QSqlQuery query;
+    query.prepare("INSERT INTO my_watchlist (imdbID, title, year, director) VALUES (:imdbID, :title, :year, :director)");
+    query.bindValue(":imdbID", imdbID);
+    query.bindValue(":title", title);
+    query.bindValue(":year", year);
+    query.bindValue(":director", director);
+
+    if (!query.exec()) {
+        qDebug() << "Error inserting data:" << query.lastError().text();
+        return;
+    }
+    emit(dataInsertedLocally());
+}
+
+
 bool LocalDatabse :: checkIfMovieExists(QString imdbID) {
     QSqlQuery query;
     query.prepare("SELECT 1 FROM my_watchlist WHERE imdbID = :imdbID");

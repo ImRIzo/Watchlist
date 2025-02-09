@@ -10,6 +10,8 @@ WatchList::WatchList(QWidget *parent)
     ui->setupUi(this);
     GetAPIkey();
     localDatabase = new LocalDatabse(this);
+    // show the watchlist from local database
+    showWatchlist();
 }
 
 // Get the API key from config.txt file...
@@ -175,6 +177,12 @@ void WatchList::on_download_button_clicked()
     QDesktopServices::openUrl(QUrl(url));
 }
 
+ // from here we will work on local database
+
+void WatchList :: showWatchlist(){
+    // this will be modified later..
+
+}
 
 void WatchList::on_addwatchlist_button_clicked()
 {
@@ -190,7 +198,16 @@ void WatchList::on_addwatchlist_button_clicked()
  }
  else {
      qDebug() << "Movie does not exist in the database. Inserting new details...";
+
+     connect(localDatabase,&LocalDatabse::dataInsertedLocally, this, &WatchList::on_localdata_insert);
+
+     QString title = ui->_title->text();
+     QString year = ui->_year->text();
+     QString director = ui->_director->text();
+     localDatabase->insertMovieDetails(imdbID, title, year, director);
  }
 
 }
-
+void WatchList :: on_localdata_insert(){
+    qDebug()<<"data inserted";
+}

@@ -36,6 +36,7 @@ private slots:
     void onDataReceived(QString jsonData);
     void onMovieItemClicked(const QModelIndex &index);
     void showMovieDetails(QString imdbID);
+    void on_localdata_insert();
 
     void on_back_button_clicked();
 
@@ -57,6 +58,7 @@ private:
     QMovie *movie;
     QString temporaryID = "";
     void fuck(QString jsonData);
+    void showWatchlist();
     QPixmap posterMap;
     QString imdbID;
     LocalDatabse *localDatabase;

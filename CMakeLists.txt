@@ -30,6 +30,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         moviedelegate.h moviedelegate.cpp
         resources.qrc
         localdatabse.h localdatabse.cpp
+        dialog.ui
 
     )
 # Define target properties for Android with Qt 6 as:
