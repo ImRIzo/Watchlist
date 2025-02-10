@@ -48,6 +48,13 @@ void WatchList::on_searchBtn_clicked()
     if(ui->stackedWidget->currentIndex()!=0)ui->stackedWidget->setCurrentWidget(ui->searchlist_page);
 
     QString title = ui->searchBox->text();
+
+    // show dialog if text is empty...
+    if(title==""){
+        Dialog dialog(this);
+        dialog.showDialog("Your speak English madafaka ?");
+    }
+
     serverdata *sd = new serverdata(this);
     // Connect the dataReceived signal to the onDataReceived slot
     connect(sd, &serverdata::dataReceived, this, &WatchList::onDataReceived);
@@ -56,7 +63,8 @@ void WatchList::on_searchBtn_clicked()
 // this slot triggers when we get data
 void WatchList::onDataReceived(QString jsonData) {
     if (jsonData.isNull()) {
-        qDebug() << "Failed to fetch data.";
+        Dialog dialog(this);
+        dialog.showDialog("Failed to fetch data.");
     } else {
         //qDebug() << "Received JSON data:" << jsonData;
 
@@ -194,7 +202,9 @@ void WatchList::on_addwatchlist_button_clicked()
  // let's check if the movie exist,
 
  if (localDatabase->checkIfMovieExists(imdbID)) {
-     qDebug() << "Movie found: ";
+     //qDebug() << "Movie found: ";
+     Dialog dialog(this);
+     dialog.showDialog("This movie is already in your list nigga.");
  }
  else {
      qDebug() << "Movie does not exist in the database. Inserting new details...";
@@ -210,4 +220,6 @@ void WatchList::on_addwatchlist_button_clicked()
 }
 void WatchList :: on_localdata_insert(){
     qDebug()<<"data inserted";
+    Dialog dialog(this);
+    dialog.showDialog("The movie has been added to your watchlist!");
 }

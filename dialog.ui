@@ -6,14 +6,58 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>320</width>
-    <height>240</height>
+    <width>482</width>
+    <height>265</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" stretch="80,20">
+  <property name="styleSheet">
+   <string notr="true">/* Style for the QDialog (parent) */
+QDialog {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, 
+                                stop:0 #2c3e50,  /* Dark blue-gray */
+                                stop:1 #34495e); /* Slightly lighter blue-gray */
+    border-radius: 12px;
+    padding: 10px;
+}
+
+/* Style for the message label */
+QLabel {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+margin-top: 50px;
+}
+
+/* Style for the OK button */
+QPushButton {
+    background-color: #3498db;  /* Blue color */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 2px solid #2980b9;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect for the OK button */
+QPushButton:hover {
+    background-color: #2980b9;  /* Slightly darker blue */
+}
+
+/* Pressed effect for the OK button */
+QPushButton:pressed {
+    background-color: #1f618d;
+    border-color: #1c4f75;
+}
+</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout" stretch="60,40">
    <property name="leftMargin">
     <number>0</number>
    </property>
@@ -28,12 +72,13 @@
    </property>
    <item>
     <widget class="QWidget" name="up" native="true">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QLabel" name="_dialog">
         <property name="font">
          <font>
-          <pointsize>18</pointsize>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
          </font>
         </property>
         <property name="text">
@@ -45,6 +90,9 @@
         <property name="wordWrap">
          <bool>true</bool>
         </property>
+        <property name="margin">
+         <number>0</number>
+        </property>
        </widget>
       </item>
      </layout>
@@ -53,13 +101,28 @@
    <item>
     <widget class="QWidget" name="down" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QDialogButtonBox" name="buttonBox">
-        <property name="orientation">
-         <enum>Qt::Orientation::Horizontal</enum>
+       <widget class="QPushButton" name="pushButtonOK">
+        <property name="maximumSize">
+         <size>
+          <width>100</width>
+          <height>40</height>
+         </size>
         </property>
-        <property name="standardButtons">
-         <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+        <property name="text">
+         <string>Got it bro</string>
         </property>
        </widget>
       </item>
@@ -69,38 +132,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>Dialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>Dialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -12,6 +12,7 @@
 #include <QLabel>
 #include <QMovie>
 #include <QFile.h>
+#include "dialog.h"
 
 
 QT_BEGIN_NAMESPACE

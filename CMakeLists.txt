@@ -19,6 +19,7 @@ set(PROJECT_SOURCES
         watchlist.cpp
         watchlist.h
         watchlist.ui
+        dialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -30,7 +31,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         moviedelegate.h moviedelegate.cpp
         resources.qrc
         localdatabse.h localdatabse.cpp
-        dialog.ui
+        dialog.h dialog.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
