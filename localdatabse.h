@@ -25,6 +25,8 @@ public:
     bool checkIfMovieExists(QString imdbID);
     void insertMovieDetails(QString imdbID, QString title, QString year, QString director, QPixmap poster);
     QList<Movie>fetchWatchlist();
+    void deleteData(QString imdbID);
+    void updateSeen(const QString &imdbID, const QString &_watched);
 signals:
     void dataInsertedLocally();
 

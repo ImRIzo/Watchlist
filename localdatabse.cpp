@@ -86,6 +86,31 @@ bool LocalDatabse :: checkIfMovieExists(QString imdbID) {
     return query.next();
 }
 
+void LocalDatabse :: deleteData(QString imdbID){
+    QSqlQuery query;
+    query.prepare("DELETE FROM my_watchlist WHERE imdbID = :imdbID");
+    query.bindValue(":imdbID", imdbID);
+
+    if (!query.exec()) {
+        //qDebug() << "Error executing query:" << query.lastError().text();
+    }
+}
+
+
+void LocalDatabse::updateSeen(const QString& imdbID, const QString& _watched) {
+    QSqlQuery query;
+    query.prepare("UPDATE my_watchlist SET watched = :watched WHERE imdbID = :imdbID");
+    query.bindValue(":imdbID", imdbID);
+    query.bindValue(":watched", _watched);
+
+    if (!query.exec()) {
+        qDebug() << "Error executing query:" << query.lastError().text();
+        qDebug() << "Query: " << query.lastQuery();
+    }
+    qDebug() << "Query: " << imdbID << _watched;
+}
+
+
 
 QList<Movie> LocalDatabse::fetchWatchlist() {
     QList<Movie> movies;

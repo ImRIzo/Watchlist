@@ -30,7 +30,7 @@ QLabel {
     font-weight: bold;
     padding: 10px;
     border-radius: 8px;
-margin-top: 50px;
+	margin-top: 50px;
 }
 
 /* Style for the OK button */
@@ -42,7 +42,6 @@ QPushButton {
     padding: 8px 16px;
     border-radius: 6px;
     border: 2px solid #2980b9;
-    transition: all 0.3s ease-in-out;
 }
 
 /* Hover effect for the OK button */

@@ -40,6 +40,7 @@ void WatchList::InitilizeApp()
     connect(wd, &WatchlistDelegate::infoClicked, this, &WatchList::onMovieItemClicked);
     connect(wd, &WatchlistDelegate::favoriteClicked, this, &WatchList::on_favoriteClicked);
     connect(wd, &WatchlistDelegate::watchedClicked, this, &WatchList::on_watchedClicked);
+    connect(localDatabase,&LocalDatabse::dataInsertedLocally, this, &WatchList::on_localdata_insert);
 }
 
 
@@ -234,9 +235,7 @@ void WatchList::on_addwatchlist_button_clicked()
      dialog.showDialog("This movie is already in your list nigga.");
  }
  else {
-     qDebug() << "Movie does not exist in the database. Inserting new details...";
-
-     connect(localDatabase,&LocalDatabse::dataInsertedLocally, this, &WatchList::on_localdata_insert);
+     qDebug() << "Movie does not exist in the database. Inserting new details...";     
 
      QString title = ui->_title->text();
      QString year = ui->_year->text();
@@ -256,11 +255,9 @@ void WatchList :: on_localdata_insert(){
 }
 
 void WatchList :: on_deleteClicked(const QModelIndex &index){
-    qDebug()<<"sdsdsd";
-}
-void WatchList :: on_infoClicked(const QModelIndex &index){
-    //QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
-    //onMovieItemClicked(index);
+    QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
+    localDatabase->deleteData(imdbID);
+    showWatchlist();
 }
 
 void WatchList :: on_favoriteClicked(const QModelIndex &index){
@@ -268,7 +265,17 @@ void WatchList :: on_favoriteClicked(const QModelIndex &index){
 }
 
 void WatchList :: on_watchedClicked(const QModelIndex &index){
+    QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
+    QString seen = index.model()->data(index, MovieModel::SeenRole).toString();
 
+    if(seen=="0" || seen == nullptr){
+        seen = "1";
+    }else if(seen=="1"){
+        seen = "0";
+    }
+
+    localDatabase->updateSeen(imdbID,seen);
+    showWatchlist();
 }
 
 

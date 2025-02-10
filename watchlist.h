@@ -47,7 +47,7 @@ private slots:
     void on_searchBox_returnPressed();
     void on_addwatchlist_button_clicked();
     void on_deleteClicked(const QModelIndex &index);
-    void on_infoClicked(const QModelIndex &index);
+    //void on_infoClicked(const QModelIndex &index);
     void on_favoriteClicked(const QModelIndex &index);
     void on_watchedClicked(const QModelIndex &index);
 

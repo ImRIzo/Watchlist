@@ -6,8 +6,15 @@
 WatchlistDelegate::WatchlistDelegate(QObject *parent) : QStyledItemDelegate{parent} {}
 
 void WatchlistDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const {
-    painter->save();
+    QColor backgroundColor;
 
+    if (index.data(MovieModel::SeenRole) == "1" || index.data(MovieModel::SeenRole) == "") {
+        backgroundColor = QColor(144, 238, 144); // Light Green for watched movies
+    } else if (index.data(MovieModel::SeenRole) == "0") {
+        backgroundColor = QColor(85, 156, 228); // Blue for unwatched movies
+    }
+
+    painter->save();
     // Draw rounded rect
 
     QRect rect = option.rect;
@@ -17,7 +24,7 @@ void WatchlistDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     QPainterPath path;
     path.addRoundedRect(rect, 5, 5);
     painter->setClipPath(path);
-    painter->fillRect(rect, option.state & QStyle::State_Selected ? QColor(128,185,238) : QColor(85,156,228));
+    painter->fillRect(rect, backgroundColor);
 
     // Draw border
     QPen pen(QColor(173,216,255));
@@ -51,9 +58,7 @@ void WatchlistDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     QFont titleFont = painter->font();
     titleFont.setBold(true);
     titleFont.setPointSize(12);
-    // if (index.data(MovieModel::WatchedRole).toBool()) {
-    //     titleFont.setStrikeOut(true);
-    // }
+
     painter->setFont(titleFont);
     painter->setPen(QColor(1,1,1));
     painter->drawText(titleRect, Qt::AlignLeft, index.data(MovieModel::TitleRole).toString());
