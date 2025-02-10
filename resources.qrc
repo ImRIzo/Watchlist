@@ -12,5 +12,9 @@
         <file>resources/images/download.png</file>
         <file>resources/images/search.png</file>
         <file>resources/images/youtube.png</file>
+        <file>resources/images/delete.png</file>
+        <file>resources/images/favorite.png</file>
+        <file>resources/images/info.png</file>
+        <file>resources/images/seen.png</file>
     </qresource>
 </RCC>

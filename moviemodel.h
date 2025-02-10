@@ -16,6 +16,7 @@ struct Movie {
     QString imdbID;
     QString Type;
     QPixmap Poster;
+    QString Seen;
 };
 
 struct MovieDetails {
@@ -43,7 +44,8 @@ public:
         YearRole,
         imdbIDRole,
         TypeTole,
-        PosterRole
+        PosterRole,
+        SeenRole
     };
 
     enum DataType{
@@ -57,7 +59,9 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     // this function shows the result
     void ShowSearchResult(QString _jsonServerData, DataType dataType);
+    void ShowWatchListResult(const QList<Movie>& movieList);
     MovieDetails movieDetailedShow(QString _jsonServerData) const;
+
 private:
     QList<Movie> movies;
     QString jsonServerData;

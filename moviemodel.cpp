@@ -22,10 +22,11 @@ QVariant MovieModel::data(const QModelIndex &index, int role) const {
         case imdbIDRole: return movie.imdbID;
         case TypeTole: return movie.Type;
         case PosterRole: return movie.Poster;
+        case SeenRole: return movie.Seen;
         default: return QVariant();
     }
 }
-// this shit happens when we get the json data
+// this shit happens when we get the json data. it shows the fucking search result on the window
 void MovieModel::ShowSearchResult(QString _jsonServerData, DataType dataType){
     // Convert the JSON string to QJsonDocument
     QJsonDocument document = QJsonDocument::fromJson(_jsonServerData.toUtf8());
@@ -58,6 +59,7 @@ void MovieModel::ShowSearchResult(QString _jsonServerData, DataType dataType){
         movie.Year = movieObj["Year"].toString();
         movie.imdbID = movieObj["imdbID"].toString();
         movie.Type = movieObj["Type"].toString();
+
         // postar downloading.. if no postar then return a default postar
         QPixmap poster = serverData->downloadImage(movieObj["Poster"].toString());
         if (poster.isNull()) {
@@ -78,6 +80,21 @@ void MovieModel::addMovie(const Movie &movie) {
     movies.append(movie);
     endInsertRows();
 }
+
+
+// this shit shows the watchlist..
+void MovieModel::ShowWatchListResult(const QList<Movie>& movieList) {
+    if (movieList.isEmpty()) {
+        // Dialog dialog(nullptr);
+        // dialog.showDialog("No movies found in your watchlist.");
+        return;
+    }
+
+    for (const Movie &movie : movieList) {
+        addMovie(movie);
+    }
+}
+
 
 
 MovieDetails MovieModel::movieDetailedShow(QString _jsonServerData) const {

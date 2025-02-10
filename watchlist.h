@@ -5,6 +5,7 @@
 #include <QListView>
 #include "MovieModel.h"
 #include "MovieDelegate.h"
+#include "watchlistdelegate.h"
 #include "localdatabse.h"
 #include <QDesktopServices>
 #include <QLineEdit>

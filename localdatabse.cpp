@@ -37,30 +37,24 @@ QString LocalDatabse :: getDatabasePath() {
     return dbPath;
 }
 
-// insert data if data not exists
-// bool LocalDatabse :: getMovieDetails(const QString& imdbID, QString& title, QString& year, QString& director) {
-//     QSqlQuery query;
-//     query.prepare("SELECT title, year, director FROM movies WHERE imdbID = :imdbID");
-//     query.bindValue(":imdbID", imdbID);
+// get the local poster path ...
+QString LocalDatabse :: getPosterPath() {
+    // Get the app data directory (user-specific)
+    QString appDataDir = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    // Define the path for the database file
+    QString posterPath = appDataDir + "/Poster/";
+    // Ensure the directory exists
+    QDir dir(posterPath);
+    if (!dir.exists()) {
+        dir.mkpath(".");
+    }
+    return posterPath;
+}
 
-//     if (!query.exec()) {
-//         qDebug() << "Error executing query:" << query.lastError().text();
-//         return false;
-//     }
-
-//     if (query.next()) {
-//         title = query.value(0).toString();
-//         year = query.value(1).toString();
-//         director = query.value(2).toString();
-//         return true;
-//     }
-
-//     return false;
-// }
 
 
 // Insert movie details into the database
-void LocalDatabse :: insertMovieDetails( QString imdbID, QString title, QString year, QString director) {
+void LocalDatabse :: insertMovieDetails( QString imdbID, QString title, QString year, QString director, QPixmap poster) {
     QSqlQuery query;
     query.prepare("INSERT INTO my_watchlist (imdbID, title, year, director) VALUES (:imdbID, :title, :year, :director)");
     query.bindValue(":imdbID", imdbID);
@@ -72,6 +66,10 @@ void LocalDatabse :: insertMovieDetails( QString imdbID, QString title, QString 
         qDebug() << "Error inserting data:" << query.lastError().text();
         return;
     }
+
+    // save the poster as PNG to the local disk -> appdata folder
+    poster.save(getPosterPath()+imdbID+".png", "PNG");
+
     emit(dataInsertedLocally());
 }
 
@@ -87,3 +85,40 @@ bool LocalDatabse :: checkIfMovieExists(QString imdbID) {
 // it return bool if row is found
     return query.next();
 }
+
+
+QList<Movie> LocalDatabse::fetchWatchlist() {
+    QList<Movie> movies;
+
+    // Example of querying the database to fetch movie info
+    QSqlQuery query("SELECT * FROM my_watchlist");
+    if (!query.exec()) {
+        qDebug() << "Error executing query:" << query.lastError().text();
+        return movies;
+    }
+
+    // Loop through the result set and create Movie objects
+    while (query.next()) {
+        Movie movie;
+        movie.Title = query.value("title").toString();
+        movie.Year = query.value("year").toString();
+        movie.imdbID = query.value("imdbID").toString();
+        movie.Seen = query.value("watched").toString();
+
+        // Download poster if available or use a default one
+        QPixmap poster;
+        poster.load(getPosterPath()+movie.imdbID+".png");
+        if (poster.isNull()) {
+        // poster na thakle ki korbo segula pore hobe....ekhon default ta diye rakhlam
+            poster.load(":/images/resources/images/defaultposter.png");
+            movie.Poster = poster;
+        } else {
+            movie.Poster = poster;
+        }
+
+        movies.append(movie);
+    }
+
+    return movies;
+}
+

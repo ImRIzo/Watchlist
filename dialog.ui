@@ -79,6 +79,7 @@ QPushButton:pressed {
          <font>
           <pointsize>-1</pointsize>
           <bold>true</bold>
+          <strikeout>false</strikeout>
          </font>
         </property>
         <property name="text">

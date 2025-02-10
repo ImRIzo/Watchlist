@@ -190,6 +190,17 @@ void WatchList::on_download_button_clicked()
 void WatchList :: showWatchlist(){
     // this will be modified later..
 
+    QList<Movie> movieList = localDatabase->fetchWatchlist();
+    MovieModel *model = new MovieModel(this);
+    model->ShowWatchListResult(movieList);
+    QListView *listView = ui->listview_saved;
+    listView->setModel(model);
+
+    //set a custom delegate
+    WatchlistDelegate *delegate = new WatchlistDelegate(this);
+    listView->setItemDelegate(delegate);
+    listView->show();
+
 }
 
 void WatchList::on_addwatchlist_button_clicked()
@@ -214,7 +225,8 @@ void WatchList::on_addwatchlist_button_clicked()
      QString title = ui->_title->text();
      QString year = ui->_year->text();
      QString director = ui->_director->text();
-     localDatabase->insertMovieDetails(imdbID, title, year, director);
+     QPixmap poster = ui->_poster->pixmap();
+     localDatabase->insertMovieDetails(imdbID, title, year, director, poster);
  }
 
 }
@@ -222,4 +234,7 @@ void WatchList :: on_localdata_insert(){
     qDebug()<<"data inserted";
     Dialog dialog(this);
     dialog.showDialog("The movie has been added to your watchlist!");
+
+    showWatchlist();
+
 }

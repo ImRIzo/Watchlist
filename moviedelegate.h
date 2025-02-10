@@ -22,4 +22,4 @@ signals:
     void itemClicked(const QModelIndex &index);
 };
 
-#endif // MOVIEDELEGATE_H
+#endif
