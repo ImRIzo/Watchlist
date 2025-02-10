@@ -233,7 +233,7 @@ QPushButton:pressed {
 </string>
             </property>
             <property name="text">
-             <string>My Watchlis</string>
+             <string>My Watchlist</string>
             </property>
            </widget>
           </item>
@@ -1451,9 +1451,8 @@ QLabel, QPushButton, QLineEdit {
      <string>Help</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="actionHow_To_Use"/>
     <addaction name="separator"/>
-    <addaction name="actionAbout_This_App"/>
+    <addaction name="howto"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -1473,9 +1472,14 @@ QLabel, QPushButton, QLineEdit {
     <string>How To Use</string>
    </property>
   </action>
-  <action name="actionAbout_This_App">
+  <action name="howto">
    <property name="text">
-    <string>About This App</string>
+    <string>How To Use</string>
+   </property>
+   <property name="https://github.com/ImRIzo/Watchlist" stdset="0">
+    <url>
+     <string/>
+    </url>
    </property>
   </action>
  </widget>

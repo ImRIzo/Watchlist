@@ -2,6 +2,7 @@
     <qresource prefix="/images">
         <file>resources/images/defaultposter.png</file>
         <file>resources/images/appicon.png</file>
+		<file>resources/images/appicon.ico</file>
         <file>resources/images/loading.gif</file>
         <file>resources/images/IMDB_Logo_2016.svg</file>
         <file>resources/images/Rotten_Tomatoes_logo.svg</file>

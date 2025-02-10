@@ -50,6 +50,7 @@ private slots:
     //void on_infoClicked(const QModelIndex &index);
     void on_favoriteClicked(const QModelIndex &index);
     void on_watchedClicked(const QModelIndex &index);
+    void openWebsite();
 
 private:
     Ui::WatchList *ui;

@@ -41,6 +41,11 @@ void WatchList::InitilizeApp()
     connect(wd, &WatchlistDelegate::favoriteClicked, this, &WatchList::on_favoriteClicked);
     connect(wd, &WatchlistDelegate::watchedClicked, this, &WatchList::on_watchedClicked);
     connect(localDatabase,&LocalDatabse::dataInsertedLocally, this, &WatchList::on_localdata_insert);
+
+    QAction *openWebsiteAction = new QAction("howto", this);
+
+    // Connect the action to a slot that opens the URL
+    connect(openWebsiteAction, &QAction::triggered, this, &WatchList::openWebsite);
 }
 
 
@@ -48,6 +53,12 @@ WatchList::~WatchList()
 {
     delete movie;
     delete ui;    
+}
+
+void WatchList::openWebsite()
+{
+    // Open the website using QDesktopServices
+    QDesktopServices::openUrl(QUrl("https://www.example.com"));
 }
 
 // this function executes once the return button is pressed.....

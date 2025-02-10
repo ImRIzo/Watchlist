@@ -16,7 +16,8 @@ fuck off
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QIcon appIcon(":/images/resources/images/appicon.png");
+
+    QIcon appIcon(QCoreApplication::applicationDirPath()+"/appicon.ico");
     a.setWindowIcon(appIcon);
     // set always dark mode ...
     a.setStyle(QStyleFactory::create("Fusion"));
