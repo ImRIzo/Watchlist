@@ -32,6 +32,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resources.qrc
         localdatabse.h localdatabse.cpp
         dialog.h dialog.cpp
+        watchlistdelegate.h watchlistdelegate.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

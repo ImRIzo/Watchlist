@@ -1,5 +1,7 @@
 #include "moviemodel.h"
 #include <QDebug>
+#include "dialog.h"
+
 MovieModel::MovieModel(QObject *parent): QAbstractListModel(parent){
     serverData = new serverdata(this);
 }
@@ -33,8 +35,10 @@ void MovieModel::ShowSearchResult(QString _jsonServerData, DataType dataType){
     }
 
     QJsonObject jsonObject = document.object();
-    if (!jsonObject.contains("Search") || !jsonObject["Search"].isArray()) {
-        qDebug() << "No search results found!";
+    if (jsonObject["Response"].toString() == "False") {
+        //qDebug() << "No search results found!";
+        Dialog dialog(nullptr);
+        dialog.showDialog(jsonObject["Error"].toString());
         return;
     }
 

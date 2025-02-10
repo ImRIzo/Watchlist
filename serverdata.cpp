@@ -55,7 +55,7 @@ QPixmap serverdata::downloadImage(QString url) {
     QPixmap pixmap;
     if (reply->error() == QNetworkReply::NoError) {
         QByteArray imageData = reply->readAll();
-        pixmap.loadFromData(imageData); // Load image into QPixmap
+        pixmap.loadFromData(imageData);
     }
 
     reply->deleteLater();
