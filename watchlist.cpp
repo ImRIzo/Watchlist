@@ -8,15 +8,15 @@ WatchList::WatchList(QWidget *parent)
     , ui(new Ui::WatchList)
 {
     ui->setupUi(this);
-    GetAPIkey();
-    localDatabase = new LocalDatabse(this);
-    // show the watchlist from local database
-    showWatchlist();
+    InitilizeApp();
 }
 
 // Get the API key from config.txt file...
-void WatchList::GetAPIkey()
+void WatchList::InitilizeApp()
 {
+    // init those delegate buttons
+    wd = new WatchlistDelegate(this);
+    // init the API key
     QString keyPath = QCoreApplication::applicationDirPath() + "/config.txt";
     QFile configFile(keyPath);
     if (configFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -26,9 +26,22 @@ void WatchList::GetAPIkey()
         apiKey = _apiKey;
         qDebug()<<"API key: "<<_apiKey;
     }else{
-        qDebug()<<"key not found";
+        Dialog dialog(this);
+        dialog.showDialog("API Key not found !");
     }
+    // init the local database
+    localDatabase = new LocalDatabse(this);
+
+    // show the watchlist from local database
+    showWatchlist();
+    // Connect the dataReceived signal to the onDataReceived slot
+    // on delete button click connect
+    connect(wd, &WatchlistDelegate::deleteClicked, this, &WatchList::on_deleteClicked);
+    connect(wd, &WatchlistDelegate::infoClicked, this, &WatchList::onMovieItemClicked);
+    connect(wd, &WatchlistDelegate::favoriteClicked, this, &WatchList::on_favoriteClicked);
+    connect(wd, &WatchlistDelegate::watchedClicked, this, &WatchList::on_watchedClicked);
 }
+
 
 WatchList::~WatchList()
 {
@@ -197,9 +210,12 @@ void WatchList :: showWatchlist(){
     listView->setModel(model);
 
     //set a custom delegate
-    WatchlistDelegate *delegate = new WatchlistDelegate(this);
-    listView->setItemDelegate(delegate);
+    //WatchlistDelegate *delegate = new WatchlistDelegate(this);
+    listView->setItemDelegate(wd);
     listView->show();
+
+
+
 
 }
 
@@ -238,3 +254,23 @@ void WatchList :: on_localdata_insert(){
     showWatchlist();
 
 }
+
+void WatchList :: on_deleteClicked(const QModelIndex &index){
+    qDebug()<<"sdsdsd";
+}
+void WatchList :: on_infoClicked(const QModelIndex &index){
+    //QString imdbID = index.model()->data(index, MovieModel::imdbIDRole).toString();
+    //onMovieItemClicked(index);
+}
+
+void WatchList :: on_favoriteClicked(const QModelIndex &index){
+
+}
+
+void WatchList :: on_watchedClicked(const QModelIndex &index){
+
+}
+
+
+
+

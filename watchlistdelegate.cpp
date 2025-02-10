@@ -1,6 +1,7 @@
 #include "watchlistdelegate.h"
 #include "MovieModel.h"
 #include <QPainter>
+#include <qapplication.h>
 
 WatchlistDelegate::WatchlistDelegate(QObject *parent) : QStyledItemDelegate{parent} {}
 
@@ -8,9 +9,11 @@ void WatchlistDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     painter->save();
 
     // Draw rounded rect
+
     QRect rect = option.rect;
     rect.setTop(rect.top() + 2);
     rect.setLeft(rect.left() + 2);
+    rect.setRight(rect.right() -2);
     QPainterPath path;
     path.addRoundedRect(rect, 5, 5);
     painter->setClipPath(path);
@@ -66,7 +69,7 @@ void WatchlistDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     // **Draw Buttons (Aligned to the Right)**
     int buttonSize = 32;
     int spacing = 5;
-    int rightPadding = 10;
+    int rightPadding = 15;
 
     QRect deleteButtonRect(rect.right() - rightPadding - buttonSize, rect.center().y() - buttonSize / 2, buttonSize, buttonSize);
     QRect infoButtonRect(deleteButtonRect.left() - buttonSize - spacing, deleteButtonRect.top(), buttonSize, buttonSize);
@@ -93,11 +96,12 @@ QSize WatchlistDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
 }
 
 bool WatchlistDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index) {
+
     if (event->type() == QEvent::MouseButtonPress) {
         QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
         int buttonSize = 32;
         int spacing = 5;
-        int rightPadding = 10;
+        int rightPadding = 15;
 
         QRect deleteButtonRect(option.rect.right() - rightPadding - buttonSize, option.rect.center().y() - buttonSize / 2, buttonSize, buttonSize);
         QRect infoButtonRect(deleteButtonRect.left() - buttonSize - spacing, deleteButtonRect.top(), buttonSize, buttonSize);

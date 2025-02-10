@@ -14,6 +14,7 @@
 #include <QMovie>
 #include <QFile.h>
 #include "dialog.h"
+#include <QApplication>
 
 
 QT_BEGIN_NAMESPACE
@@ -30,7 +31,7 @@ public:
     QString apiKey;
 
     WatchList(QWidget *parent = nullptr);
-    void GetAPIkey();
+    void InitilizeApp();
     ~WatchList();
 
 private slots:
@@ -39,18 +40,16 @@ private slots:
     void onMovieItemClicked(const QModelIndex &index);
     void showMovieDetails(QString imdbID);
     void on_localdata_insert();
-
     void on_back_button_clicked();
-
     void on_youtube_button_clicked();
-
     void on_google_button_clicked();
-
     void on_download_button_clicked();
-
     void on_searchBox_returnPressed();
-
     void on_addwatchlist_button_clicked();
+    void on_deleteClicked(const QModelIndex &index);
+    void on_infoClicked(const QModelIndex &index);
+    void on_favoriteClicked(const QModelIndex &index);
+    void on_watchedClicked(const QModelIndex &index);
 
 private:
     Ui::WatchList *ui;
@@ -64,5 +63,6 @@ private:
     QPixmap posterMap;
     QString imdbID;
     LocalDatabse *localDatabase;
+    WatchlistDelegate *wd;
 };
 #endif // WATCHLIST_H
